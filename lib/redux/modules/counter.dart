@@ -14,6 +14,6 @@ CounterState counterReducer(CounterState state, IncrementAction action) {
   return CounterState(counter: state.counter + 1);
 }
 
-final reducers = combineReducers<CounterState>([
+final counterReducers = combineReducers<CounterState>([
   TypedReducer<CounterState, IncrementAction>(counterReducer)
 ]);
