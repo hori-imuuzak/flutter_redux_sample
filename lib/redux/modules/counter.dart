@@ -1,19 +1,21 @@
-import 'package:redux/redux.dart';
-
 class CounterState {
   final int counter;
 
   CounterState({this.counter});
 }
 
-class IncrementAction {
-
+enum CounterActions {
+  Increment,
+  Reset
 }
 
-CounterState counterReducer(CounterState state, IncrementAction action) {
-  return CounterState(counter: state.counter + 1);
-}
+CounterState counterReducer(CounterState state, action) {
+  switch (action) {
+    case CounterActions.Increment:
+      return CounterState(counter: state.counter + 1);
+    case CounterActions.Reset:
+      return CounterState(counter: 0);
+  }
 
-final counterReducers = combineReducers<CounterState>([
-  TypedReducer<CounterState, IncrementAction>(counterReducer)
-]);
+  return state;
+}
